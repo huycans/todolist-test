@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {getAllTodos, addTodo, deleteTodo} from './todoAPIs.jsx';
+import Header from './components/header/header.jsx';
+import TodoList from './components/todo-list/todo-list.jsx';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+  state = {
+    todos: []
+  }
+
+  componentDidMount () {
+    getAllTodos()
+      .then(data => this.setState({todos:data}))
+  }
+
+  addTodos = (todoObj) => {
+    const {todos} = this.state
+    addTodo(todoObj).then(data => this.setState({todos: [data, ...todos]}))
+  }
+
+  deleteTodos = (id) => {
+    const {todos} = this.state
+    const newTodos = todos.filter(todo => todo.id !== id)
+    this.setState({todos:newTodos})
+    deleteTodo(id)
+  }
+
+  render() {
+    const {todos} = this.state
+    return (
+      <>
+        <Header />
+        <TodoList todos={todos} addTodos={this.addTodos} deleteTodos={this.deleteTodos}/>
+      </>
+    );
+  }
 }
-
-export default App;

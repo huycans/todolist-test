@@ -1,0 +1,12 @@
+.header {
+    position: fixed;
+    height: 60px;
+    background: linear-gradient(to right, black, rgba(21, 146, 4, 0.747));
+    color: white;
+    width: 100vw;
+    font-size: 3rem;
+    text-transform: capitalize;
+    line-height: 60px;
+    letter-spacing: 3px;
+    user-select: none;
+}

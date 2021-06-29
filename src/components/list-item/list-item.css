@@ -1,0 +1,57 @@
+.todolist__header,
+.todolist__input,
+ul li {
+    height: 30px;
+    width: 100%;
+    padding: 0 15px;
+    line-height: 30px;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    list-style: none;
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+.todolist__header {
+    font-size: 1.5rem;
+}
+
+ul {
+    height: 240px;
+    overflow: auto;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul li:hover {
+    background-color: rgba(16, 121, 2, 0.747);
+}
+
+ul li button {
+    background-color: transparent;
+    color: rgb(148, 21, 21);
+    width: 20px;
+    height: 30px;
+    outline: none;
+    border: none;
+}
+
+ul li button:hover {
+    color:red;
+    font-size: 1.4rem;
+}
+
+ul li button:active {
+    color: red;
+    font-size: 1.2rem;
+}
+
+ul li span {
+    width: 90%;
+    overflow: hidden;
+}

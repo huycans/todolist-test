@@ -1,0 +1,17 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blanchedalmond;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.todolist {
+    height: 300px;
+    width: 450px;
+    background-color: rgba(21, 146, 4, 0.747);
+    box-shadow: 2px 3px 5px black;
+    border-radius: 10px;
+}
