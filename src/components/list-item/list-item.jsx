@@ -6,8 +6,8 @@ export default class ListItem extends Component {
     render() {
         const {todo, deleteTodos} = this.props;
         return (
-            <li>
-                <span>{todo.title}</span>
+            <li className="list-item">
+                <span className="list-item_title">{todo.title}</span>
                 <button className="btn-remove" onClick={()=>deleteTodos(todo.id)}>X</button>
             </li>
         )
