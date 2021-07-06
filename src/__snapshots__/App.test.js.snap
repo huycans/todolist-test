@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test suite renders correctly 1`] = `
+Array [
+  <div
+    className="header"
+  >
+    Todo List App
+  </div>,
+  <div
+    className="content"
+  >
+    <div
+      className="todolist"
+    >
+      <header
+        className="todolist__header"
+      >
+        Todo List
+      </header>
+      <input
+        className="todolist__input"
+        onKeyUp={[Function]}
+        placeholder="input here"
+        type="text"
+      />
+      <ul
+        id="todolist-content"
+      />
+    </div>
+  </div>,
+]
+`;
