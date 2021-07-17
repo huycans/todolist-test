@@ -22,7 +22,9 @@ jest.mock('./todoAPIs.jsx', () => {
   };
 });
 
-describe("Test suite", () => {
+window.alert = jest.fn();
+
+describe("App component", () => {
   // beforeEach(() => {
   // // setup before each test
   // });
@@ -39,23 +41,17 @@ describe("Test suite", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('App should render without crashing', () => {
+  it('should render the header text', () => {
     const app = mount(<App />);
     expect(app.find(".header").text()).toEqual("Todo List App");
   });
 
-  it("Render two default ToDo items--state", async () => {
-    //waiting for componentdidmount to finish run, then check the state for the number of todos
-    const app = await mount(<App />);
-    expect(app.instance().state.todos.length).toBe(2);
-
-    app.update();
-    expect(app.find(".list-item").length).toBe(2);
-  });
-
-  it("Render two default ToDo items--UI", async () => {
+  it("should render two ToDo items", async () => {
     //another way. this test the UI instead of checking state directly
     const app = mount(<App />);
+    //nothing is rendered yet
+    expect(app.find(".list-item").length).toBe(0);
+
 
     // https://www.benmvp.com/blog/asynchronous-testing-with-enzyme-react-jest/
     //https://stackoverflow.com/questions/54465734/testing-asynchronous-componentdidmount-that-changes-state-with-jest-and-enzyme
@@ -69,17 +65,18 @@ describe("Test suite", () => {
     //     });
     //   });
     // }
+
     app.update();
 
     expect(app.find(".list-item").length).toBe(2);
   });
 
-  it("Render an input field for typing up new ToDo items", () => {
+  it("should render an input field for typing up new ToDo items", () => {
     const app = mount(<App />);
     expect(app.find(".todolist__input").length).toEqual(1);
   });
 
-  it("If the Enter key is pressed but the input field is empty, prevent a new ToDo item from being created", async () => {
+  it("should prevent a new ToDo item from being created if the Enter key is pressed but the input field is empty, ", async () => {
     const app = mount(<App />);
     await new Promise(setImmediate);
     app.update();
@@ -93,7 +90,7 @@ describe("Test suite", () => {
 
   });
 
-  it("If the Enter key is pressed but the input field is empty, show an alert to the user", () => {
+  it("should show an alert to the user if the Enter key is pressed but the input field is empty", () => {
     const app = mount(<App />);
     jest.spyOn(window, 'alert').mockImplementation(() => { });
 
@@ -102,7 +99,7 @@ describe("Test suite", () => {
     expect(window.alert).toBeCalledWith("empty input");
   });
 
-  it("If the Enter key is pressed and the input field has content, add a new ToDo item", async () => {
+  it("should add a new ToDo item if the Enter key is pressed and the input field has content", async () => {
     const app = mount(<App />);
     await new Promise(setImmediate);
     app.update();
@@ -118,7 +115,7 @@ describe("Test suite", () => {
     expect(app.find(".list-item").at(0).text()).toContain("new todo");
   });
 
-  it("When the ‘Delete’ button is pressed for a single ToDo item, remove that ToDo item from the App", async () => {
+  it("should remove a ToDo item from the list when the ‘Delete’ button is pressed for on that ToDo item, ", async () => {
     const app = mount(<App />);
     await new Promise(setImmediate);
     app.update();
